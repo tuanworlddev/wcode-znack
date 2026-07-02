@@ -20,6 +20,8 @@ jobs:
             args: --target aarch64-apple-darwin
           - platform: macos-latest # Intel
             args: --target x86_64-apple-darwin
+          - platform: windows-latest # x64, NSIS installer
+            args: ""
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +33,7 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-apple-darwin,x86_64-apple-darwin
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - uses: swatinem/rust-cache@v2
         with:
