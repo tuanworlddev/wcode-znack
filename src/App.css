@@ -1735,6 +1735,42 @@ svg {
   word-break: break-word;
   font-family: Arial, "Segoe UI", sans-serif;
 }
+.about-grid {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px 14px;
+  align-items: center;
+  margin: 12px 0;
+  font-size: 13.5px;
+}
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+.link-btn:hover {
+  text-decoration: underline;
+}
+.about-update {
+  align-items: center;
+  gap: 12px;
+}
+.about-new {
+  font-size: 12.5px;
+}
+.about-uptodate {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #16a34a;
+}
 .designer-el-line {
   width: 100%;
   height: 100%;

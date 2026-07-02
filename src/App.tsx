@@ -61,6 +61,17 @@ export default function App() {
     loadStores();
   }, [loadStores]);
 
+  // Silent update check at startup; installing happens in Cài đặt → Giới thiệu.
+  useEffect(() => {
+    import("./lib/updater")
+      .then((m) => m.checkForUpdate())
+      .then((u) => {
+        if (u) notify(`Có phiên bản mới ${u.version} — vào Cài đặt để cập nhật.`, "info");
+      })
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (active && !active.hasToken) setTab("settings");
   }, [active]);

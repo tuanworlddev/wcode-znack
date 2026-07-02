@@ -32,6 +32,15 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI5NUFFRTczNjdDQkI0NgpSV1JHdTN3MjU2NlZBc0V3cVArQmJIRy9FblZuNjZVblJwOHA1Yi9qTGt3U0daaHdkaFJLRktoeAo=",
+      "endpoints": [
+        "https://github.com/tuanworlddev/wcode-znack/releases/latest/download/latest.json"
+      ]
+    }
   }
 }

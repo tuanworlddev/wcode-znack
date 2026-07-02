@@ -5,6 +5,7 @@ import type { StoreInfo } from "../types/wb";
 import type { Notify } from "../App";
 import ConfirmModal from "./ConfirmModal";
 import ZnackSettingsCard from "./ZnackSettings";
+import AboutCard from "./About";
 
 export default function Settings({
   notify,
@@ -165,6 +166,8 @@ export default function Settings({
       </div>
 
       <ZnackSettingsCard notify={notify} />
+
+      <AboutCard notify={notify} />
 
       <div className="card danger-card">
         <h2>Xoá cửa hàng</h2>
