@@ -18,6 +18,8 @@ import Znack from "./components/Znack";
 import LabelDesigner from "./components/LabelDesigner";
 import Fbo from "./components/Fbo";
 import AddStoreModal from "./components/AddStoreModal";
+import UpdateModal from "./components/UpdateModal";
+import type { Update } from "@tauri-apps/plugin-updater";
 import StoreMenu from "./components/StoreMenu";
 import "./App.css";
 
@@ -61,15 +63,14 @@ export default function App() {
     loadStores();
   }, [loadStores]);
 
-  // Silent update check at startup; installing happens in Cài đặt → Giới thiệu.
+  // Update check at startup: a modal offers install-now / later. Manual
+  // checks stay available in Cài đặt → Giới thiệu.
+  const [pendingUpdate, setPendingUpdate] = useState<Update | null>(null);
   useEffect(() => {
     import("./lib/updater")
       .then((m) => m.checkForUpdate())
-      .then((u) => {
-        if (u) notify(`Có phiên bản mới ${u.version} — vào Cài đặt để cập nhật.`, "info");
-      })
+      .then((u) => u && setPendingUpdate(u))
       .catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -187,6 +188,14 @@ export default function App() {
           notify={notify}
           onClose={() => setShowAdd(false)}
           onDone={handleStoreCreated}
+        />
+      )}
+
+      {pendingUpdate && (
+        <UpdateModal
+          update={pendingUpdate}
+          notify={notify}
+          onClose={() => setPendingUpdate(null)}
         />
       )}
 
